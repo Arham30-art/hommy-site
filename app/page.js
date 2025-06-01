@@ -72,20 +72,21 @@ const Home = () => {
           </div>
 
           {/* Right Side (Image) */}
-          {/* Image */}
+          {/* Right Side (Image) */}
           <div
-            className="rounded-xl overflow-hidden shadow-lg w-[250px] h-[300px] md:w-[450px] md:h-[600px]"
-            data-aos="fade-left"
-            data-aos-delay="500"
-          >
-            <Image
-              src="/images/7.avif"
-              alt="About"
-              width={450}
-              height={600}
-              className="object-cover w-full h-full"
-            />
-          </div>
+  className="rounded-xl overflow-hidden shadow-lg w-[320px] h-[400px] mt-6 md:w-[450px] md:h-[600px] md:mt-0 md:ml-6"
+  data-aos="fade-left"
+  data-aos-delay="500"
+>
+  <Image
+    src="/images/7.avif"
+    alt="About"
+    width={450}  // Ye Next.js ke liye asli image size reference hai
+    height={600}
+    className="object-cover w-full h-full"
+  />
+</div>
+
         </div>
       </section>
       <MainSection />

@@ -25,7 +25,7 @@ export const Header = () => {
         data-aos="fade-down"
       >
         {/* Logo */}
-        <div className="flex items-center space-x-3" data-aos="fade-right">
+        <div className="flex items-center space-x-5" data-aos="fade-right">
           <Image src="/images/1.png" alt="Logo" width={50} height={50} />
           <span className="text-black text-xl font-bold">Hommy</span>
         </div>
