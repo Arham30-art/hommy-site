@@ -14,7 +14,8 @@ export default function About() {
   }, []);
 
   return (
-    <div className="text-gray-900 -mt-30">
+   <section className='pt-16'>
+     <div className="text-gray-900 -mt-30 py-10">
       <div className="container mx-auto px-6 flex flex-col items-center justify-center">
         {/* Center - Heading & Paragraph */}
         <div
@@ -32,7 +33,7 @@ export default function About() {
         </div>
 
         {/* Main Grid: Cards (Left) + Image (Right) */}
-        <div className="w-full grid md:grid-cols-3 gap-10">
+        <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Cards */}
           <div className="space-y-6 md:col-span-2">
             <div
@@ -83,23 +84,20 @@ export default function About() {
 
           {/* Image */}
           <div
-            style={{
-              width: 350,
-              height: 400,
-              borderRadius: '12px',
-              overflow: 'hidden',
-              boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
-            }}
+            className="relative h-[300px] md:h-[400px] w-full md:w-[350px] rounded-xl shadow-xl overflow-hidden"
+            data-aos="fade-left"
           >
             <Image
               src="/images/7.jpg"
               alt="About"
-              width={450}
-              height={600}
+              fill
+              className="object-cover w-full h-full transition-transform duration-500 ease-in-out"
+              priority
             />
           </div>
         </div>
       </div>
     </div>
+   </section>
   );
 }

@@ -1,9 +1,9 @@
 "use client";
-import Head from 'next/head';
-import Image from 'next/image';
-import { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import Head from "next/head";
+import Image from "next/image";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const MainSection = () => {
   useEffect(() => {
@@ -19,8 +19,10 @@ const MainSection = () => {
         <title>Hommy - Exclusive Furniture</title>
       </Head>
 
+    
+
+      {/* ✅ Existing Main Section */}
       <section className="bg-white text-gray-900 min-h-screen py-12">
-        {/* Top Section */}
         <div
           className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0"
           data-aos="fade-up"
@@ -30,8 +32,7 @@ const MainSection = () => {
           </div>
 
           <div className="text-left text-black text-lg md:text-xl px-4 max-w-xl">
-            We offer a wide variety of furniture products to suit your unique
-            style and needs.
+            We offer a wide variety of furniture products to suit your unique style and needs.
           </div>
 
           <button className="border-2 border-black text-green-600 px-5 py-3 rounded-md flex items-center space-x-3 hover:bg-yellow-600 hover:text-white transition-transform transform hover:scale-105 shadow-md">
@@ -49,7 +50,6 @@ const MainSection = () => {
           </button>
         </div>
 
-        {/* Grid Section */}
         <div className="container mx-auto px-6 mt-12 grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Sidebar */}
           <div
@@ -95,9 +95,8 @@ const MainSection = () => {
               </div>
             </div>
 
-            {/* Boxes with Images */}
+            {/* Boxes */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Work Space */}
               <div
                 className="relative rounded-2xl shadow-xl overflow-hidden h-44 group cursor-pointer"
                 data-aos="fade-left"
@@ -117,7 +116,6 @@ const MainSection = () => {
                 </div>
               </div>
 
-              {/* Kitchen */}
               <div
                 className="relative rounded-2xl shadow-xl overflow-hidden h-44 group cursor-pointer"
                 data-aos="fade-up"
