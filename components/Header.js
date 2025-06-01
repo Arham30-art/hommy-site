@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useCart } from '@/app/context/CartContext'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import Image from 'next/image'
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -25,8 +26,8 @@ export const Header = () => {
         data-aos="fade-down"
       >
         {/* Logo */}
-        <div className="flex items-center space-x-5" data-aos="fade-right">
-          <img src="/images/1.png" alt="Logo" className="h-6 w-6" />
+        <div className="flex items-center space-x-3" data-aos="fade-right">
+          <Image src="/images/1.png" alt="Logo" width={50} height={50} />
           <span className="text-black text-xl font-bold">Hommy</span>
         </div>
 
@@ -101,24 +102,32 @@ export const Header = () => {
         </div>
       </nav>
 
-      {/* Mobile Dropdown Menu */}
+      {/* Mobile Dropdown Menu (Glassy) */}
       {isMenuOpen && (
         <div
-          className="md:hidden absolute top-full left-0 w-full bg-white shadow p-4 z-10"
+          className="md:hidden absolute top-full left-0 w-full backdrop-blur-lg bg-white/60 shadow-lg p-4 z-10 rounded-b-xl border border-white/40"
           data-aos="fade-down"
         >
-          <ul className="space-y-2">
+          <ul className="space-y-2 text-black font-semibold">
             <li>
-              <Link href="/" className="block px-2 py-1 hover:bg-gray-200">Home</Link>
+              <Link href="/" className="block px-2 py-1 hover:bg-white/20 rounded" onClick={() => setIsMenuOpen(false)}>
+                Home
+              </Link>
             </li>
             <li>
-              <Link href="/about" className="block px-2 py-1 hover:bg-gray-200">About Us</Link>
+              <Link href="/about" className="block px-2 py-1 hover:bg-white/20 rounded" onClick={() => setIsMenuOpen(false)}>
+                About Us
+              </Link>
             </li>
             <li>
-              <Link href="/product" className="block px-2 py-1 hover:bg-gray-200">Product</Link>
+              <Link href="/product" className="block px-2 py-1 hover:bg-white/20 rounded" onClick={() => setIsMenuOpen(false)}>
+                Product
+              </Link>
             </li>
             <li>
-              <Link href="/shop" className="block px-2 py-1 hover:bg-gray-200">Shop</Link>
+              <Link href="/testimonial" className="block px-2 py-1 hover:bg-white/20 rounded" onClick={() => setIsMenuOpen(false)}>
+                Testimonial
+              </Link>
             </li>
           </ul>
         </div>

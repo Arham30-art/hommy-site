@@ -26,7 +26,8 @@ export default function About() {
             WE PRIORITIZE CUSTOMER SATISFACTION
           </h2>
           <p className="text-black text-lg">
-            We strive to provide our customers with the best possible shopping experience.
+            We strive to provide our customers with the best possible shopping
+            experience.
           </p>
         </div>
 
@@ -41,8 +42,12 @@ export default function About() {
             >
               <FaTruck className="text-2xl mt-1" />
               <div>
-                <h3 className="text-xl font-semibold">Fast and Free Shipping</h3>
-                <p className="mt-2">We offer fast and free shipping for our loyal customers.</p>
+                <h3 className="text-xl font-semibold">
+                  Fast and Free Shipping
+                </h3>
+                <p className="mt-2">
+                  We offer fast and free shipping for our loyal customers.
+                </p>
               </div>
             </div>
 
@@ -54,7 +59,10 @@ export default function About() {
               <FaShieldAlt className="text-2xl mt-1" />
               <div>
                 <h3 className="text-xl font-semibold">Product Guarantee</h3>
-                <p className="mt-2">Exchange the goods you've purchased if a product defect is found.</p>
+                <p className="mt-2">
+                  Exchange the goods you've purchased if a product defect is
+                  found.
+                </p>
               </div>
             </div>
 
@@ -66,23 +74,28 @@ export default function About() {
               <FaWallet className="text-2xl mt-1" />
               <div>
                 <h3 className="text-xl font-semibold">Easy Installment</h3>
-                <p className="mt-2">Play lighter installments; transactions become easier.</p>
+                <p className="mt-2">
+                  Play lighter installments; transactions become easier.
+                </p>
               </div>
             </div>
           </div>
 
           {/* Image */}
           <div
-            className="flex justify-center md:col-span-1"
-            data-aos="fade-left"
-            data-aos-delay="500"
+            style={{
+              width: 350,
+              height: 400,
+              borderRadius: '12px',
+              overflow: 'hidden',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+            }}
           >
             <Image
               src="/images/7.jpg"
               alt="About"
-              width={350}
-              height={400}
-              className="rounded-xl shadow-lg"
+              width={450}
+              height={600}
             />
           </div>
         </div>

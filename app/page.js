@@ -1,19 +1,19 @@
-"use client"
-import About from "@/components/About";
-import MainSection from "@/components/MainSection";
-import Head from "next/head";
-import Image from "next/image";
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+'use client';
+import About from '@/components/About';
+import MainSection from '@/components/MainSection';
+import Head from 'next/head';
+import Image from 'next/image';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-import Testimonials from "@/components/Testimonial";
+import Testimonials from '@/components/Testimonial';
 
 const Home = () => {
   useEffect(() => {
     AOS.init({
       duration: 800,
-      easing: "ease-in-out",
+      easing: 'ease-in-out',
       once: true,
     });
   }, []);
@@ -23,9 +23,8 @@ const Home = () => {
       <Head>
         <title>Hommy - Make Your Room Comfortable & Useful</title>
       </Head>
-
       {/* Hero Section */}
-      <section className="bg-gray-600 text-white relative overflow-hidden">
+      <section className="bg-gray-400 text-white relative overflow-hidden">
         {/* Content */}
         <div className="container mx-auto px-4 py-20 relative z-10 flex flex-col md:flex-row items-center justify-between">
           {/* Left Side (Text) */}
@@ -34,13 +33,13 @@ const Home = () => {
             data-aos="fade-right"
             data-aos-delay="100"
           >
-            <p className="text-green-500 font-bold mb-4">
+            <p className="text-yellow-400 font-bold mb-4">
               Affordable Price, Good Quality
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
               Make Your Room <br /> Comfortable & Useful
             </h1>
-            <p className="text-lg mb-8">
+            <p className="text-lg mb-8 text-white">
               With a focus on design and functionality, Hommy offers a balance
               between comfort and practicality.
             </p>
@@ -73,25 +72,25 @@ const Home = () => {
           </div>
 
           {/* Right Side (Image) */}
+          {/* Image */}
           <div
-            className="w-full md:w-1/2 hidden md:block"
+            className="rounded-xl overflow-hidden shadow-lg w-[250px] h-[300px] md:w-[450px] md:h-[600px]"
             data-aos="fade-left"
-            data-aos-delay="200"
+            data-aos-delay="500"
           >
             <Image
-              src="/images/2.avif" // Replace with your room image path
-              alt="Room Image"
-              width={500}
-              height={500}
-              className="w-full h-full object-cover rounded-lg shadow-lg"
+              src="/images/7.avif"
+              alt="About"
+              width={450}
+              height={600}
+              className="object-cover w-full h-full"
             />
           </div>
         </div>
       </section>
-
       <MainSection />
-      <About /> 
-      <br /> <br/> <br /> <br/>
+      <About />
+      <br /> <br /> <br /> <br />
       <Testimonials />
     </>
   );
