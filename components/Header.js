@@ -11,7 +11,6 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { cartCount } = useCart()
 
-  // Initialize AOS
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -20,7 +19,7 @@ export const Header = () => {
   }, [])
 
   return (
-    <header className="bg-gray-200 shadow-md p-3 relative">
+    <header className="bg-gray-200 shadow-md p-3 relative z-50">
       <nav
         className="container mx-auto px-5 py-2 flex justify-between items-center"
         data-aos="fade-down"
@@ -102,30 +101,46 @@ export const Header = () => {
         </div>
       </nav>
 
-      {/* Mobile Dropdown Menu (Glassy) */}
+      {/* Mobile Dropdown Menu (Glassy + Closes on Click) */}
       {isMenuOpen && (
         <div
-          className="md:hidden absolute top-full left-0 w-full backdrop-blur-lg bg-white/60 shadow-lg p-4 z-10 rounded-b-xl border border-white/40"
+          className="md:hidden absolute top-full left-0 w-full bg-white/30 backdrop-blur-md shadow-2xl p-5 z-20 rounded-b-xl border border-white/30 transition-all duration-300 ease-in-out"
           data-aos="fade-down"
         >
-          <ul className="space-y-2 text-black font-semibold">
+          <ul className="space-y-3 text-black font-semibold text-lg">
             <li>
-              <Link href="/" className="block px-2 py-1 hover:bg-white/20 rounded" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                href="/"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-3 py-2 rounded hover:bg-white/20 transition"
+              >
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/about" className="block px-2 py-1 hover:bg-white/20 rounded" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                href="/about"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-3 py-2 rounded hover:bg-white/20 transition"
+              >
                 About Us
               </Link>
             </li>
             <li>
-              <Link href="/product" className="block px-2 py-1 hover:bg-white/20 rounded" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                href="/product"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-3 py-2 rounded hover:bg-white/20 transition"
+              >
                 Product
               </Link>
             </li>
             <li>
-              <Link href="/testimonial" className="block px-2 py-1 hover:bg-white/20 rounded" onClick={() => setIsMenuOpen(false)}>
+              <Link
+                href="/testimonial"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-3 py-2 rounded hover:bg-white/20 transition"
+              >
                 Testimonial
               </Link>
             </li>
