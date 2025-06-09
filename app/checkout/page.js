@@ -1,13 +1,10 @@
 'use client'
 
-import { useCart } from '../context/CartContext'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import { useEffect } from 'react'
 
-export default function Checkout() {
-  const { cartItems } = useCart() // 👈 cartItems context se le rahe hain
+export default function App() {
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -16,14 +13,24 @@ export default function Checkout() {
     city: '',
   })
 
+  const [cartItems, setCartItems] = useState([
+    {
+      id: 1,
+      name: 'Wireless Headphones',
+      price: 89.99,
+      quantity: 1,
+    },
+    {
+      id: 2,
+      name: 'Smart Watch',
+      price: 129.99,
+      quantity: 2,
+    },
+  ])
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true })
   }, [])
-
-  const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  )
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -32,102 +39,67 @@ export default function Checkout() {
   const handleSubmit = (e) => {
     e.preventDefault()
     alert('Order placed! Thank you, ' + form.firstName)
-    // Optionally: clear cart context items here if needed
   }
 
+  const incrementItem = (id) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    )
+  }
+
+  const decrementItem = (id) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    )
+  }
+
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  )
+
   return (
-    <div
-      style={{
-        maxWidth: '900px',
-        margin: 'auto',
-        padding: '20px',
-        fontFamily: 'Arial, sans-serif',
-        backgroundColor: 'white',
-        minHeight: '100vh',
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: '#ccc',
-          padding: '40px 20px',
-          borderRadius: '12px',
-          color: '#333',
-          fontSize: '3rem',
-          fontWeight: 'bold',
-          textAlign: 'center',
-          userSelect: 'none',
-          marginBottom: '30px',
-        }}
+    <div className="max-w-6xl mx-auto p-6">
+      <h1
+        className="text-4xl font-bold text-center bg-gray-200 py-8 rounded-xl mb-10"
         data-aos="fade-up"
       >
         Checkout Page
-      </div>
+      </h1>
 
-      <div
-        style={{
-          display: 'flex',
-          gap: '40px',
-          flexWrap: 'wrap',
-        }}
-      >
+      <div className="flex flex-col lg:flex-row gap-10">
         {/* Shipping Form */}
         <form
           onSubmit={handleSubmit}
-          style={{
-            flex: '1 1 400px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '15px',
-            backgroundColor: 'white',
-            padding: '20px',
-            borderRadius: '12px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-          }}
+          className="lg:w-2/3 bg-white p-6 rounded-xl shadow-md"
           data-aos="fade-up"
           data-aos-delay="200"
         >
-          <h2>Shipping Details</h2>
-          {['firstName', 'lastName', 'address', 'zipCode', 'city'].map(
-            (field) => (
-              <label
-                key={field}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  fontWeight: 'bold',
-                  fontSize: '14px',
-                }}
-              >
-                {field.charAt(0).toUpperCase() + field.slice(1)}
-                <input
-                  type="text"
-                  name={field}
-                  value={form[field]}
-                  onChange={handleChange}
-                  required
-                  style={{
-                    padding: '8px',
-                    fontSize: '16px',
-                    marginTop: '5px',
-                    border: '1px solid #ccc',
-                    borderRadius: '6px',
-                  }}
-                />
-              </label>
-            )
-          )}
+          <h2 className="text-xl font-semibold mb-4">Shipping Details</h2>
+          {Object.keys(form).map((field) => (
+            <label key={field} className="block mb-4">
+              <span className="block font-medium capitalize">{field}</span>
+              <input
+                type="text"
+                name={field}
+                value={form[field]}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 border rounded-lg mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </label>
+          ))}
           <button
             type="submit"
-            style={{
-              padding: '12px',
-              backgroundColor: '#0070f3',
-              color: 'white',
-              border: 'none',
-              borderRadius: '8px',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              marginTop: '20px',
-            }}
+            className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition"
           >
             Place Order
           </button>
@@ -135,61 +107,43 @@ export default function Checkout() {
 
         {/* Order Summary */}
         <div
-          style={{
-            flex: '1 1 300px',
-            border: '1px solid #ddd',
-            borderRadius: '2rem',
-            padding: '20px',
-            backgroundColor: '#fafafa',
-            height: 'fit-content',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-          }}
+          className="lg:w-1/3 bg-white p-6 rounded-xl shadow-md"
           data-aos="fade-up"
           data-aos-delay="400"
         >
-          <h1
-            style={{
-              fontSize: '1.25rem',
-              fontWeight: 'bold',
-              padding: '5px',
-              textAlign: 'center',
-            }}
-          >
-            Order Summary
-          </h1>
-
+          <h2 className="text-xl font-semibold mb-4 text-center">Order Summary</h2>
           {cartItems.length > 0 ? (
             cartItems.map((item) => (
               <div
                 key={item.id}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  marginBottom: '10px',
-                  fontSize: '16px',
-                }}
+                className="flex justify-between items-center mb-4 pb-4 border-b"
               >
-                <p>
-                  {item.name} (x{item.quantity})
-                </p>
-                <p>${item.price * item.quantity}</p>
+                <div>
+                  <p className="font-medium">{item.name}</p>
+                  <div className="flex items-center gap-2 mt-2">
+                    <button
+                      onClick={() => decrementItem(item.id)}
+                      className="px-2 py-1 border rounded hover:bg-gray-100"
+                    >
+                      -
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button
+                      onClick={() => incrementItem(item.id)}
+                      className="px-2 py-1 border rounded hover:bg-gray-100"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <p className="font-bold">${(item.price * item.quantity).toFixed(2)}</p>
               </div>
             ))
           ) : (
-            <p
-              style={{ textAlign: 'center', color: '#888', marginTop: '10px' }}
-            >
-              No items in cart
-            </p>
+            <p className="text-center text-gray-500">No items in cart</p>
           )}
-          <hr
-            style={{
-              margin: '20px 0',
-              border: 'none',
-              borderTop: '1px solid #ddd',
-            }}
-          />
-          <h3>Total: ${totalPrice.toFixed(2)}</h3>
+          <hr className="my-4" />
+          <h3 className="text-lg font-bold text-right">Total: ${totalPrice.toFixed(2)}</h3>
         </div>
       </div>
     </div>

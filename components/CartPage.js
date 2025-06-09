@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FiTrash2 } from "react-icons/fi";
 
 export default function CartPage() {
-  const { cartItems, updateQuantity, removeFromCart } = useCart();
+  const { cartItems, incrementItem, decrementItem, removeFromCart } = useCart();
 
   const shippingCost = 10.0;
 
@@ -45,7 +45,7 @@ export default function CartPage() {
             />
 
             <div className="flex-1">
-              {/* Product Name (title and subtitle repeated) */}
+              {/* Product Name */}
               <h2 className="text-xl font-semibold">{item.name}</h2>
               <p className="text-gray-600">{item.name}</p>
 
@@ -58,7 +58,7 @@ export default function CartPage() {
               {/* Quantity controls */}
               <div className="flex items-center gap-3 mt-3">
                 <button
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  onClick={() => decrementItem(item.id)}
                   disabled={item.quantity <= 1}
                   className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
                 >
@@ -66,7 +66,7 @@ export default function CartPage() {
                 </button>
                 <span className="px-3">{item.quantity}</span>
                 <button
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  onClick={() => incrementItem(item.id)}
                   className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
                 >
                   +
@@ -105,11 +105,11 @@ export default function CartPage() {
           <span>${total.toFixed(2)}</span>
         </div>
 
-      <Link href='/checkout'>
-      <button className="w-full bg-yellow-400 text-white py-3 rounded hover:bg-yellow-500 transition font-semibold">
-          Proceed to Checkout
-        </button>
-      </Link>
+        <Link href="/checkout">
+          <button className="w-full bg-yellow-400 text-white py-3 rounded hover:bg-yellow-500 transition font-semibold">
+            Proceed to Checkout
+          </button>
+        </Link>
       </div>
     </div>
   );
